@@ -18,7 +18,6 @@ const shift = program.shift;
 validation(action, shift);
 
 pipeline (
-	//console.log('program.input ', key),
 	inputStream(program.input),
 	through2(action ==='encode' ? encode(+shift) : decode(+shift)),
 	outputStream(program.output),
