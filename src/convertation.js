@@ -1,7 +1,6 @@
 exports.encode = (key) =>{
 	return function(chunk, enc, callback){
 		const text = chunk.toString('utf8');
-		console.log("text ", chunk);
 		let charArr = [...text];
 		let fKey = key;
 		if(key >26) fKey = key%26;
@@ -38,21 +37,6 @@ exports.decode = (key) =>{
 			if(charArr[i] < 97) charArr[i] = 123 - (97 - charArr[i]); 
 			}
 		}
-		/*
-		const codeArr = charArr.map((el)=>{
-		let codeElement = el.charCodeAt();
-		if(codeElement >= 65 && codeElement<=90){
-			codeElement -= fKey;
-			if(codeElement < 65) codeElement = 91 - (65 - codeElement);
-		}
-		if(codeElement >= 97 && codeElement <= 122){
-			codeElement -= fKey;
-			if(codeElement < 97) codeElement = 123 - (97 - codeElement); 
-		}
-		
-		return codeElement;
-	});
-	*/
 	this.push(charArr.map((el)=>String.fromCharCode(el)).join(''));
 	callback();
 	}
